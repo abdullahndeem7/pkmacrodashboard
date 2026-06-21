@@ -7,13 +7,14 @@ import {
   MessageSquare,
   TrendingUp,
   BarChart2,
+  Briefcase,
   Settings,
 } from "lucide-react";
 
 const NAV_ITEMS = [
-  { href: "/", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/ai-assistant", label: "AI", icon: MessageSquare },
+  { href: "/", label: "Home", icon: LayoutDashboard },
   { href: "/macro", label: "Macro", icon: TrendingUp },
+  { href: "/portfolio", label: "Portfolio", icon: Briefcase },
   { href: "/markets", label: "Markets", icon: BarChart2 },
   { href: "/settings", label: "Settings", icon: Settings },
 ];

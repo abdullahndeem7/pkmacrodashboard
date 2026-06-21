@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 
 const PAGE_TITLES: Record<string, string> = {
   "/": "Dashboard",
@@ -8,13 +9,32 @@ const PAGE_TITLES: Record<string, string> = {
   "/macro": "Macro",
   "/markets": "Markets",
   "/settings": "Settings",
+  "/portfolio": "Portfolio",
   "/login": "Sign in",
   "/admin": "Admin",
 };
 
+function useElapsed() {
+  const loadTime = useRef(Date.now());
+  const [elapsed, setElapsed] = useState(0);
+  useEffect(() => {
+    const t = setInterval(
+      () => setElapsed(Math.floor((Date.now() - loadTime.current) / 1000)),
+      1000
+    );
+    return () => clearInterval(t);
+  }, []);
+  return elapsed < 60
+    ? `${elapsed}s ago`
+    : elapsed < 3600
+    ? `${Math.floor(elapsed / 60)}m ago`
+    : "1h+ ago";
+}
+
 export default function Topbar() {
   const pathname = usePathname();
   const title = PAGE_TITLES[pathname] ?? "Dashboard";
+  const syncedLabel = useElapsed();
 
   return (
     <header
@@ -41,18 +61,26 @@ export default function Topbar() {
         </span>
       </div>
 
-      {/* Live status */}
-      <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-        <div
-          style={{
-            width: 6,
-            height: 6,
-            borderRadius: "50%",
-            background: "var(--accent-green)",
-            boxShadow: "0 0 0 2px var(--accent-green-dim)",
-          }}
-        />
-        <span style={{ fontSize: 11, color: "var(--text-tertiary)" }}>Live</span>
+      {/* Live status + sync timer */}
+      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        <span
+          className="hidden sm:inline"
+          style={{ fontSize: 11, color: "var(--text-tertiary)", fontFamily: "var(--font-mono)" }}
+        >
+          last synced {syncedLabel}
+        </span>
+        <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+          <div
+            style={{
+              width: 6,
+              height: 6,
+              borderRadius: "50%",
+              background: "var(--accent-green)",
+              boxShadow: "0 0 0 2px var(--accent-green-dim)",
+            }}
+          />
+          <span style={{ fontSize: 11, color: "var(--text-tertiary)" }}>Live</span>
+        </div>
       </div>
     </header>
   );

@@ -9,6 +9,7 @@ import {
   BarChart2,
   Settings,
   Shield,
+  Briefcase,
 } from "lucide-react";
 
 const NAV_ITEMS = [
@@ -16,6 +17,7 @@ const NAV_ITEMS = [
   { href: "/ai-assistant", label: "AI Assistant", icon: MessageSquare },
   { href: "/macro", label: "Macro", icon: TrendingUp },
   { href: "/markets", label: "Markets", icon: BarChart2 },
+  { href: "/portfolio", label: "Portfolio", icon: Briefcase },
   { href: "/settings", label: "Settings", icon: Settings },
 ];
 
