@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+:root {
+  /* Warm dark neutral palette — Claude Console identity */
+  --bg-base: #1a1a1c;
+  --bg-surface: #222226;
+  --bg-surface-raised: #2a2a2f;
+  --bg-surface-hover: #2d2d32;
+  --border-hairline: #2d2d32;
+  --border-hairline-strong: #3a3a40;
+
+  /* Text */
+  --text-primary: #f0efed;
+  --text-secondary: #9b9a97;
+  --text-tertiary: #5e5d5a;
+
+  /* Single accent — warm coral, used sparingly */
+  --accent: #d97757;
+  --accent-dim: #3d2518;
+
+  /* Semantic trend colors — don't compete with accent */
+  --accent-green: #22c47e;
+  --accent-green-dim: #0f2b1e;
+  --accent-red: #e5554b;
+  --accent-red-dim: #2e1515;
+  --accent-amber: #d4a032;
+
+  /* Category accent bar colors */
+  --cat-monetary: #d97757;
+  --cat-fx: #5b8cf5;
+  --cat-markets: #a78bfa;
+  --cat-external: #34d399;
+  --cat-growth: #fbbf24;
+
+  /* Layout */
+  --sidebar-width: 216px;
+  --topbar-height: 48px;
+}
+
+@theme inline {
+  --color-background: var(--bg-base);
+  --color-foreground: var(--text-primary);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--bg-base);
+  color: var(--text-primary);
+}
+
+.font-mono-tabular {
+  font-family: var(--font-mono);
+  font-feature-settings: "tnum" 1;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Sidebar nav items ─────────────────────────────────── */
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  text-decoration: none;
+  transition: background 0.12s ease, color 0.12s ease;
+  color: var(--text-secondary);
+}
+
+.sidebar-item:hover {
+  background: var(--bg-surface-hover);
+  color: var(--text-primary);
+}
+
+.sidebar-item[data-active="true"] {
+  background: var(--bg-surface-hover);
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* ── Metric card hover ─────────────────────────────────── */
+.metric-card {
+  transition: border-color 0.15s ease;
+}
+
+.metric-card:hover {
+  border-color: var(--border-hairline-strong);
+}
+
+/* ── Card entrance animation ───────────────────────────── */
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-card-in {
+  animation: card-in 0.22s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-card-in {
+    animation: none;
+  }
+}
+
+/* ── Placeholder page ──────────────────────────────────── */
+.placeholder-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40vh;
+  color: var(--text-tertiary);
+  font-size: 14px;
+}
