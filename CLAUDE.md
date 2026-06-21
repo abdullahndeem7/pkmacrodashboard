@@ -9,7 +9,7 @@ balance). Built by Muhammad Abdullah as a portfolio/credibility piece and the
 foundation for a larger "Personal Financial Analyst AI" product. Sister
 project to FinShield PK (separate repo).
 
-## Stack
+## Stacks
 - Next.js 16 (App Router), TypeScript, Tailwind v4
 - Supabase (Postgres + RLS) for metrics + time-series observations
 - Deploys to Vercel
