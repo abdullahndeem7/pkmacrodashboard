@@ -8,6 +8,8 @@ const PAGE_TITLES: Record<string, string> = {
   "/macro": "Macro",
   "/markets": "Markets",
   "/settings": "Settings",
+  "/login": "Sign in",
+  "/admin": "Admin",
 };
 
 export default function Topbar() {

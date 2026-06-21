@@ -8,6 +8,7 @@ import {
   TrendingUp,
   BarChart2,
   Settings,
+  Shield,
 } from "lucide-react";
 
 const NAV_ITEMS = [
@@ -17,6 +18,8 @@ const NAV_ITEMS = [
   { href: "/markets", label: "Markets", icon: BarChart2 },
   { href: "/settings", label: "Settings", icon: Settings },
 ];
+
+const ADMIN_NAV_ITEM = { href: "/admin", label: "Admin", icon: Shield };
 
 export default function Sidebar() {
   const pathname = usePathname();
@@ -94,6 +97,32 @@ export default function Sidebar() {
             </Link>
           );
         })}
+
+        {/* Admin section */}
+        <div
+          style={{
+            margin: "8px 10px 4px",
+            paddingTop: 8,
+            borderTop: "1px solid var(--border-hairline)",
+          }}
+        >
+          <Link
+            href={ADMIN_NAV_ITEM.href}
+            className="sidebar-item"
+            data-active={pathname.startsWith(ADMIN_NAV_ITEM.href) ? "true" : "false"}
+          >
+            <Shield
+              size={14}
+              style={{
+                color: pathname.startsWith(ADMIN_NAV_ITEM.href)
+                  ? "var(--accent)"
+                  : "var(--text-tertiary)",
+                flexShrink: 0,
+              }}
+            />
+            {ADMIN_NAV_ITEM.label}
+          </Link>
+        </div>
       </nav>
 
       {/* Footer */}

@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npx tsc *)"
+      "Bash(npx tsc *)",
+      "Bash(xargs grep -li \"server action\\\\|'use server'\\\\|\\\\\"use server\\\\\"\")"
     ]
   }
 }
